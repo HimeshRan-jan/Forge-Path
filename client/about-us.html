@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Forge Path — the premium research journal for modern developers.">
+  <title>About Us — Forge Path</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .about-container { max-width: 900px; margin: 0 auto; }
+    .hero-section { text-align: center; margin-bottom: 4rem; }
+    .hero-h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #3b82f6, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .hero-p { font-size: 1.1rem; color: var(--text-secondary); max-width: 550px; margin: 0 auto; line-height: 1.7; }
+    
+    .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+    .v-card {
+      padding: 2rem;
+      border-radius: var(--radius-xl);
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+    .v-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-violet));
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .v-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg), var(--shadow-glow); }
+    .v-card:hover::before { opacity: 1; }
+    .v-icon { font-size: 2.5rem; margin-bottom: 1.25rem; display: block; }
+    .v-h3 { font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--primary-color); font-weight: 700; }
+    .v-p { color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .team-member {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      text-align: center;
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+    .team-member::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+      border-color: var(--primary-border);
+    }
+    .team-member:hover::before { opacity: 1; }
+    .member-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.25rem;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    }
+    .member-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+      color: var(--text-primary);
+    }
+    .member-role {
+      font-size: 0.75rem;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .social-links { display: flex; gap: 0.5rem; justify-content: center; }
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--surface-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      font-size: 1rem;
+    }
+    .social-link:hover { background: var(--primary-color); color: white; transform: scale(1.1); }
+
+    @media (max-width: 768px) {
+      .hero-h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="menu-toggle" onclick="toggleTopNav()" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="dashboard.html" class="navbar-brand" style="gap:0.6rem;">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <polygon points="16,3 29,16 16,29 3,16" fill="#0f172a" stroke="#1e3a8a" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="11" r="2" fill="#f97316"/>
+          <path d="M16 23V14M12 18l4-4 4 4" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 0.1rem;"></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
+          <div style="display:flex;align-items:baseline;">
+            <span class="brand-text">ForgePath</span>
+          </div>
+          <span style="font-size:0.4rem;color:var(--text-tertiary);letter-spacing:0.12em;font-weight:600;margin-top:0.15rem;text-transform:uppercase;">Forge Your Career Path</span>
+        </div>
+      </a>
+          <div class="top-nav-links" id="topNavLinks">
+        <a href="dashboard.html" class="nav-link">📊 Dashboard</a>
+        <a href="roadmap.html" class="nav-link">🗺️ Roadmap</a>
+        <div class="nav-dropdown">
+          <a href="javascript:void(0)" onclick="toggleMyExperiments(event)" class="nav-link">
+            <span>🧪 Experiments</span>
+            <span class="exp-caret" style="font-size:0.8em; transition: transform 0.2s;">▼</span>
+          </a>
+          <div id="exp-submenu" class="nav-dropdown-menu" style="display: none;">
+            <a href="experiments.html" class="nav-link">📋 View List</a>
+            <a href="add-experiment.html" class="nav-link">➕ Add New</a>
+            <a href="compare.html" class="nav-link">⚖️ Compare</a>
+          </div>
+        </div>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <a href="about-us.html" class="nav-link active">ℹ️ About Us</a>
+        <a href="manual.html" class="nav-link">📖 Manual</a>
+      </div>
+</div>
+    <div class="navbar-nav">
+      
+    <div class="noti-container">
+      <button class="noti-btn" onclick="toggleNotiDropdown(event)" aria-label="Notifications">
+        🔔
+        <span class="noti-badge" id="notiBadge"></span>
+      </button>
+      <div class="noti-dropdown" id="notiDropdown">
+        <div class="noti-header">Recent Achievements</div>
+        <div class="noti-list" id="notiList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  
+
+  <div class="app-wrapper">
+    
+
+    <main class="main-content">
+      <div class="about-container">
+        <section class="hero-section">
+          <h1 class="hero-h1">Forging the Future<br>of Development</h1>
+          <p class="hero-p">Forge Path is a premium research journal designed for modern developers to document, compare, and synthesize technological breakthroughs.</p>
+        </section>
+
+        <section class="mission-grid">
+          <div class="card v-card">
+            <span class="v-icon">🎯</span>
+            <h3 class="v-h3">Our Mission</h3>
+            <p class="v-p">To provide a structured environment where developers can treat their learning like a scientific experiment, leading to better architectural decisions.</p>
+          </div>
+          <div class="card v-card">
+            <span class="v-icon">🔬</span>
+            <h3 class="v-h3">Data-Driven Growth</h3>
+            <p class="v-p">We believe that tracking failed experiments is just as important as tracking successes. Knowledge is forged in the fire of trial and error.</p>
+          </div>
+        </section>
+
+        <section class="team-grid">
+          <!-- Team Member 1 -->
+          <div class="team-member">
+            <img src="https://ui-avatars.com/api/?name=Himesh+Ranjan&background=3b82f6&color=fff&size=120&bold=true" alt="Himesh Ranjan" class="member-img">
+            <h2 class="member-name">Himesh Ranjan</h2>
+            <span class="member-role">Team Lead</span>
+            <div class="social-links">
+              <a href="#" class="social-link" title="GitHub">🐙</a>
+              <a href="#" class="social-link" title="LinkedIn">💼</a>
+            </div>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div class="team-member">
+            <img src="https://ui-avatars.com/api/?name=Ansh+Kr.+Varshaney&background=8b5cf6&color=fff&size=120&bold=true" alt="Ansh Kr. Varshaney" class="member-img">
+            <h2 class="member-name">Ansh Kr. Varshney</h2>
+            <span class="member-role">UI Advisor</span>
+            <div class="social-links">
+              <a href="#" class="social-link" title="GitHub">🐙</a>
+              <a href="#" class="social-link" title="LinkedIn">💼</a>
+            </div>
+          </div>
+
+          <!-- Team Member 3 -->
+          <div class="team-member">
+            <img src="https://ui-avatars.com/api/?name=Partham+Kr.+Mishra&background=f97316&color=fff&size=120&bold=true" alt="Partham Kr. Mishra" class="member-img">
+            <h2 class="member-name">Partham Kr. Mishra</h2>
+            <span class="member-role">Gamification</span>
+            <div class="social-links">
+              <a href="#" class="social-link" title="GitHub">🐙</a>
+              <a href="#" class="social-link" title="LinkedIn">💼</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>if (!checkAuth()) window.location.href = 'login.html';</script>
+</body>
+</html>

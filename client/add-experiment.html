@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Add a new experiment to your Forge Path research journal.">
+  <title>Add Experiment — Forge Path</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/experiment.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="menu-toggle" onclick="toggleTopNav()" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="dashboard.html" class="navbar-brand" style="gap:0.6rem;">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <polygon points="16,3 29,16 16,29 3,16" fill="#0f172a" stroke="#1e3a8a" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="11" r="2" fill="#f97316"/>
+          <path d="M16 23V14M12 18l4-4 4 4" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 0.1rem;"></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
+          <div style="display:flex;align-items:baseline;">
+            <span class="brand-text">ForgePath</span>
+          </div>
+          <span style="font-size:0.4rem;color:var(--text-tertiary);letter-spacing:0.12em;font-weight:600;margin-top:0.15rem;text-transform:uppercase;">Forge Your Career Path</span>
+        </div>
+      </a>
+          <div class="top-nav-links" id="topNavLinks">
+        <a href="dashboard.html" class="nav-link">📊 Dashboard</a>
+        <a href="roadmap.html" class="nav-link">🗺️ Roadmap</a>
+        <div class="nav-dropdown">
+          <a href="javascript:void(0)" onclick="toggleMyExperiments(event)" class="nav-link active">
+            <span>🧪 Experiments</span>
+            <span class="exp-caret" style="font-size:0.8em; transition: transform 0.2s; transform: rotate(180deg);">▼</span>
+          </a>
+          <div id="exp-submenu" class="nav-dropdown-menu" style="display: flex;">
+            <a href="experiments.html" class="nav-link">📋 View List</a>
+            <a href="add-experiment.html" class="nav-link active">➕ Add New</a>
+            <a href="compare.html" class="nav-link">⚖️ Compare</a>
+          </div>
+        </div>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <a href="about-us.html" class="nav-link">ℹ️ About Us</a>
+        <a href="manual.html" class="nav-link">📖 Manual</a>
+      </div>
+</div>
+    <div class="navbar-nav">
+      
+    <div class="noti-container">
+      <button class="noti-btn" onclick="toggleNotiDropdown(event)" aria-label="Notifications">
+        🔔
+        <span class="noti-badge" id="notiBadge"></span>
+      </button>
+      <div class="noti-dropdown" id="notiDropdown">
+        <div class="noti-header">Recent Achievements</div>
+        <div class="noti-list" id="notiList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  
+
+  <div class="app-wrapper">
+    
+
+    <main class="main-content">
+      <div class="mb-6">
+        <h1 style="margin:0;">Add New Experiment</h1>
+        <p class="text-secondary mt-2">Document your latest technical exploration.</p>
+      </div>
+
+      <div class="card mb-6">
+        <form id="experimentForm">
+          <div class="form-grid">
+            <div class="form-group col-span-2">
+              <label class="form-label" for="title">Title *</label>
+              <input type="text" id="title" class="form-control" required placeholder="e.g. Setting up a React Native app">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="technology">Technology *</label>
+              <input type="text" id="technology" class="form-control" required placeholder="e.g. React Native">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="framework">Framework</label>
+              <input type="text" id="framework" class="form-control" placeholder="e.g. Expo">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="category">Category</label>
+              <input type="text" id="category" class="form-control" placeholder="e.g. Mobile Development">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="status">Status</label>
+              <select id="status" class="form-control">
+                <option value="Draft">Draft</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Success">Success</option>
+                <option value="Failed">Failed</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="difficulty">Difficulty</label>
+              <select id="difficulty" class="form-control">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="tags">Tags (comma separated)</label>
+              <input type="text" id="tags" class="form-control" placeholder="e.g. UI, Mobile, Expo">
+            </div>
+          </div>
+
+          <div class="form-group mt-4">
+            <label class="form-label" for="setupDetails">Setup Details & Background Context</label>
+            <textarea id="setupDetails" class="form-control" rows="3" placeholder="Describe your setup, constraints, and goals..."></textarea>
+          </div>
+
+          <div class="form-group mt-4">
+            <label class="form-label" for="stepsPerformed">Steps Performed</label>
+            <textarea id="stepsPerformed" class="form-control" rows="4" placeholder="1. Did this...&#10;2. Did that..."></textarea>
+          </div>
+
+          <div class="form-grid mt-4">
+            <div class="form-group">
+              <label class="form-label" for="expectedResult">Expected Result</label>
+              <textarea id="expectedResult" class="form-control" rows="3" placeholder="What you expected to happen"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="observedOutcome">Observed Outcome</label>
+              <textarea id="observedOutcome" class="form-control" rows="3" placeholder="What actually happened"></textarea>
+            </div>
+          </div>
+
+          <div class="form-grid mt-4">
+            <div class="form-group">
+              <label class="form-label" for="issuesFaced">Issues Faced</label>
+              <textarea id="issuesFaced" class="form-control" rows="3" placeholder="Any problems encountered"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="solutionNotes">Solution Notes</label>
+              <textarea id="solutionNotes" class="form-control" rows="3" placeholder="How you resolved issues"></textarea>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <button type="submit" class="btn btn-primary w-100" id="saveExperimentBtn" style="padding:0.85rem;">Save Experiment</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/experiment.js"></script>
+</body>
+</html>

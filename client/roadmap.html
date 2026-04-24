@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap & Schedule — Forge Path</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/roadmap.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="menu-toggle" onclick="toggleTopNav()" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="dashboard.html" class="navbar-brand" style="gap:0.6rem;">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <polygon points="16,3 29,16 16,29 3,16" fill="#0f172a" stroke="#1e3a8a" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="11" r="2" fill="#f97316"/>
+          <path d="M16 23V14M12 18l4-4 4 4" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 0.1rem;"></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
+          <div style="display:flex;align-items:baseline;">
+            <span class="brand-text">ForgePath</span>
+          </div>
+          <span style="font-size:0.4rem;color:var(--text-tertiary);letter-spacing:0.12em;font-weight:600;margin-top:0.15rem;text-transform:uppercase;">Forge Your Career Path</span>
+        </div>
+      </a>
+      <div class="top-nav-links" id="topNavLinks">
+        <a href="dashboard.html" class="nav-link">📊 Dashboard</a>
+        <a href="roadmap.html" class="nav-link active">🗺️ Roadmap</a>
+        <div class="nav-dropdown">
+          <a href="javascript:void(0)" onclick="toggleMyExperiments(event)" class="nav-link">
+            <span>🧪 Experiments</span>
+            <span class="exp-caret" style="font-size:0.8em; transition: transform 0.2s;">▼</span>
+          </a>
+          <div id="exp-submenu" class="nav-dropdown-menu" style="display: none;">
+            <a href="experiments.html" class="nav-link">📋 View List</a>
+            <a href="add-experiment.html" class="nav-link">➕ Add New</a>
+            <a href="compare.html" class="nav-link">⚖️ Compare</a>
+          </div>
+        </div>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <a href="about-us.html" class="nav-link">ℹ️ About Us</a>
+        <a href="manual.html" class="nav-link">📖 Manual</a>
+      </div>
+    </div>
+    <div class="navbar-nav">
+      <div class="noti-container">
+        <button class="noti-btn" onclick="toggleNotiDropdown(event)" aria-label="Notifications">
+          🔔
+          <span class="noti-badge" id="notiBadge"></span>
+        </button>
+        <div class="noti-dropdown" id="notiDropdown">
+          <div class="noti-header">Recent Achievements</div>
+          <div class="noti-list" id="notiList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="app-wrapper">
+    <main class="main-content">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem;">
+        <div>
+          <h1 style="margin:0;">Experiment Roadmap</h1>
+          <p class="text-secondary mt-2">Plan your upcoming experiments and schedule tasks.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openTaskModal()">+ Add Schedule Task</button>
+      </div>
+
+      <!-- KANBAN BOARD -->
+      <div class="roadmap-container">
+        <!-- PLANNED -->
+        <div class="kanban-col col-planned">
+          <div class="kanban-header">
+            <h2><span style="font-size:1.2rem">🗓️</span> Planned</h2>
+            <span class="kanban-badge" id="count-planned">0</span>
+          </div>
+          <div class="kanban-tasks" id="col-planned" data-status="planned"></div>
+          <button class="add-task-btn" onclick="openTaskModal('planned')">+ Add Task</button>
+        </div>
+
+        <!-- IN PROGRESS -->
+        <div class="kanban-col col-inprogress">
+          <div class="kanban-header">
+            <h2><span style="font-size:1.2rem">🚀</span> In Progress</h2>
+            <span class="kanban-badge" id="count-inprogress">0</span>
+          </div>
+          <div class="kanban-tasks" id="col-inprogress" data-status="inprogress"></div>
+        </div>
+
+        <!-- COMPLETED -->
+        <div class="kanban-col col-completed">
+          <div class="kanban-header">
+            <h2><span style="font-size:1.2rem">✅</span> Completed</h2>
+            <span class="kanban-badge" id="count-completed">0</span>
+          </div>
+          <div class="kanban-tasks" id="col-completed" data-status="completed"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ADD TASK MODAL -->
+  <div class="modal-overlay" id="taskModalOverlay">
+    <div class="roadmap-modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Schedule Task</h2>
+        <button class="close-modal" onclick="closeTaskModal()">×</button>
+      </div>
+      <form id="taskForm">
+        <input type="hidden" id="taskId">
+        <input type="hidden" id="taskStatus" value="planned">
+        
+        <div class="form-group mb-4">
+          <label class="form-label" for="taskTitle">Task Title *</label>
+          <input type="text" id="taskTitle" class="form-control" required placeholder="e.g. Learn React Native animations">
+        </div>
+        
+        <div class="form-group mb-4">
+          <label class="form-label" for="taskDesc">Description</label>
+          <textarea id="taskDesc" class="form-control" rows="2" placeholder="Briefly describe what you need to do..."></textarea>
+        </div>
+
+        <div class="form-group mb-4">
+          <label class="form-label" for="taskDate">Target Completion Date *</label>
+          <input type="date" id="taskDate" class="form-control" required>
+        </div>
+
+        <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary w-100" onclick="closeTaskModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary w-100">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/roadmap.js"></script>
+</body>
+</html>

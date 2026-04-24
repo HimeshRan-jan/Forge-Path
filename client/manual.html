@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Forge Path User Manual — learn how to use the platform effectively.">
+  <title>User Manual — Forge Path</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .manual-container { max-width: 900px; margin: 0 auto; }
+    .page-header { margin-bottom: 2.5rem; }
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #f1f5f9, var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+    }
+    .page-subtitle { color: var(--text-secondary); font-size: 1rem; }
+    
+    .manual-grid { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; }
+    .manual-nav { position: sticky; top: calc(var(--navbar-height) + 1.5rem); height: fit-content; }
+    .nav-list { list-style: none; padding: 0; }
+    .nav-item { margin-bottom: 0.35rem; }
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all var(--transition-fast);
+      font-size: 0.88rem;
+      display: block;
+      padding: 0.55rem 0.85rem;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--surface-hover); }
+    .nav-link.active {
+      color: var(--primary-color);
+      background: var(--primary-soft);
+      border-color: var(--primary-border);
+      font-weight: 600;
+    }
+
+    .manual-section { margin-bottom: 4rem; scroll-margin-top: calc(var(--navbar-height) + 2rem); }
+    .section-h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .section-p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; font-size: 0.95rem; }
+    
+    .step-card { margin-bottom: 1.25rem; }
+    .step-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.65rem; }
+    .step-num {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--primary-color), #2563eb);
+      color: white;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3);
+      flex-shrink: 0;
+    }
+    .step-h3 { font-size: 1.1rem; font-weight: 700; }
+    
+    .tip-box {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      margin: 1.5rem 0;
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+    .tip-emoji { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+    .tip-h4 {
+      color: var(--success-color);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+    .tip-p { color: #d1fae5; font-size: 0.88rem; margin: 0; opacity: 0.85; line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .manual-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .manual-nav { display: none; }
+      .page-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="menu-toggle" onclick="toggleTopNav()" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="dashboard.html" class="navbar-brand" style="gap:0.6rem;">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <polygon points="16,3 29,16 16,29 3,16" fill="#0f172a" stroke="#1e3a8a" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="11" r="2" fill="#f97316"/>
+          <path d="M16 23V14M12 18l4-4 4 4" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 0.1rem;"></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
+          <div style="display:flex;align-items:baseline;">
+            <span class="brand-text">ForgePath</span>
+          </div>
+          <span style="font-size:0.4rem;color:var(--text-tertiary);letter-spacing:0.12em;font-weight:600;margin-top:0.15rem;text-transform:uppercase;">Forge Your Career Path</span>
+        </div>
+      </a>
+          <div class="top-nav-links" id="topNavLinks">
+        <a href="dashboard.html" class="nav-link">📊 Dashboard</a>
+        <a href="roadmap.html" class="nav-link">🗺️ Roadmap</a>
+        <div class="nav-dropdown">
+          <a href="javascript:void(0)" onclick="toggleMyExperiments(event)" class="nav-link">
+            <span>🧪 Experiments</span>
+            <span class="exp-caret" style="font-size:0.8em; transition: transform 0.2s;">▼</span>
+          </a>
+          <div id="exp-submenu" class="nav-dropdown-menu" style="display: none;">
+            <a href="experiments.html" class="nav-link">📋 View List</a>
+            <a href="add-experiment.html" class="nav-link">➕ Add New</a>
+            <a href="compare.html" class="nav-link">⚖️ Compare</a>
+          </div>
+        </div>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <a href="about-us.html" class="nav-link">ℹ️ About Us</a>
+        <a href="manual.html" class="nav-link active">📖 Manual</a>
+      </div>
+</div>
+    <div class="navbar-nav">
+      
+    <div class="noti-container">
+      <button class="noti-btn" onclick="toggleNotiDropdown(event)" aria-label="Notifications">
+        🔔
+        <span class="noti-badge" id="notiBadge"></span>
+      </button>
+      <div class="noti-dropdown" id="notiDropdown">
+        <div class="noti-header">Recent Achievements</div>
+        <div class="noti-list" id="notiList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  
+
+  <div class="app-wrapper">
+    
+
+    <main class="main-content">
+      <div class="manual-container">
+        <header class="page-header">
+          <h1 class="page-title">Forge Path Manual</h1>
+          <p class="page-subtitle">Master the art of architectural research and experimentation.</p>
+        </header>
+
+        <div class="manual-grid">
+          <nav class="manual-nav">
+            <ul class="nav-list">
+              <li class="nav-item"><a href="#getting-started" class="nav-link active">Getting Started</a></li>
+              <li class="nav-item"><a href="#add-experiment" class="nav-link">Adding Experiments</a></li>
+              <li class="nav-item"><a href="#compare" class="nav-link">Comparing Tech</a></li>
+              <li class="nav-item"><a href="#gamification" class="nav-link">XP & Badges</a></li>
+              <li class="nav-item"><a href="#tips" class="nav-link">Pro Tips</a></li>
+            </ul>
+          </nav>
+
+          <div class="manual-content">
+            <section id="getting-started" class="manual-section">
+              <h2 class="section-h2">🚀 Getting Started</h2>
+              <p class="section-p">Forge Path is more than just a documentation tool; it's a laboratory for your digital ideas. Start by logging your current projects as experiments.</p>
+              
+              <div class="step-card">
+                <div class="step-header">
+                  <span class="step-num">01</span>
+                  <h3 class="step-h3">Dashboard Overview</h3>
+                </div>
+                <p class="section-p">Your dashboard gives you a high-level view of your research activity, success rates, and your current tier ranking. The activity heatmap shows your daily contributions over the last year.</p>
+              </div>
+            </section>
+
+            <section id="add-experiment" class="manual-section">
+              <h2 class="section-h2">🧪 Adding Experiments</h2>
+              <p class="section-p">Every time you try a new library, database, or architectural pattern, log it as an experiment. This builds your personal knowledge base over time.</p>
+              
+              <div class="step-card">
+                <div class="step-header">
+                  <span class="step-num">02</span>
+                  <h3 class="step-h3">Logging Details</h3>
+                </div>
+                <p class="section-p">Include the technology name, a clear hypothesis (what you expect to happen), and the actual outcome. Success or failure doesn't matter as much as the <em>why</em>.</p>
+              </div>
+
+              <div class="tip-box">
+                <span class="tip-emoji">💡</span>
+                <div>
+                  <h4 class="tip-h4">Pro Tip</h4>
+                  <p class="tip-p">Be specific about versions. "React 18" is better than just "React" for future reference.</p>
+                </div>
+              </div>
+            </section>
+
+            <section id="compare" class="manual-section">
+              <h2 class="section-h2">⚖️ Comparing Technology</h2>
+              <p class="section-p">Use the "Compare" feature to put two experiments side-by-side. This is ideal for deciding between similar tools (e.g., Axios vs Fetch, or Postgres vs MongoDB). Each comparison earns you XP!</p>
+            </section>
+
+            <section id="gamification" class="manual-section">
+              <h2 class="section-h2">🏆 XP & Badges</h2>
+              <p class="section-p">As you log more experiments and reach milestones, you'll earn XP and unlock badges. Your rank progresses through tiers: Novice → Apprentice → Adept → Expert → Master.</p>
+              
+              <div class="tip-box">
+                <span class="tip-emoji">🎖️</span>
+                <div>
+                  <h4 class="tip-h4">Badge Milestones</h4>
+                  <p class="tip-p">First Blood (1 experiment) • High Five (5 experiments) • Perfect Ten (10 experiments) • Analyst (use Compare tool)</p>
+                </div>
+              </div>
+            </section>
+
+            <section id="tips" class="manual-section">
+              <h2 class="section-h2">✨ Pro Tips</h2>
+              <p class="section-p">Get the most out of Forge Path with these power-user strategies.</p>
+              
+              <div class="tip-box">
+                <span class="tip-emoji">🔥</span>
+                <div>
+                  <h4 class="tip-h4">Build Streaks</h4>
+                  <p class="tip-p">Log at least one activity per day to build your streak. Streaks help you maintain consistent learning habits.</p>
+                </div>
+              </div>
+
+              <div class="tip-box">
+                <span class="tip-emoji">📊</span>
+                <div>
+                  <h4 class="tip-h4">Use Tags Wisely</h4>
+                  <p class="tip-p">Tag experiments with technology categories to easily filter and find related research later.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    if (!checkAuth()) window.location.href = 'login.html';
+    
+    // Scroll spy
+    const links = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.manual-section');
+    
+    const mainContent = document.querySelector('.main-content');
+    (mainContent || window).addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 120) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

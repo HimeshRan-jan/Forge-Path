@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse and manage your experiments on Forge Path.">
+  <title>My Experiments — Forge Path</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/experiment.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="menu-toggle" onclick="toggleTopNav()" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="dashboard.html" class="navbar-brand" style="gap:0.6rem;">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <polygon points="16,3 29,16 16,29 3,16" fill="#0f172a" stroke="#1e3a8a" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="11" r="2" fill="#f97316"/>
+          <path d="M16 23V14M12 18l4-4 4 4" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 0.1rem;"></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
+          <div style="display:flex;align-items:baseline;">
+            <span class="brand-text">ForgePath</span>
+          </div>
+          <span style="font-size:0.4rem;color:var(--text-tertiary);letter-spacing:0.12em;font-weight:600;margin-top:0.15rem;text-transform:uppercase;">Forge Your Career Path</span>
+        </div>
+      </a>
+          <div class="top-nav-links" id="topNavLinks">
+        <a href="dashboard.html" class="nav-link">📊 Dashboard</a>
+        <a href="roadmap.html" class="nav-link">🗺️ Roadmap</a>
+        <div class="nav-dropdown">
+          <a href="javascript:void(0)" onclick="toggleMyExperiments(event)" class="nav-link active">
+            <span>🧪 Experiments</span>
+            <span class="exp-caret" style="font-size:0.8em; transition: transform 0.2s; transform: rotate(180deg);">▼</span>
+          </a>
+          <div id="exp-submenu" class="nav-dropdown-menu" style="display: flex;">
+            <a href="experiments.html" class="nav-link active">📋 View List</a>
+            <a href="add-experiment.html" class="nav-link">➕ Add New</a>
+            <a href="compare.html" class="nav-link">⚖️ Compare</a>
+          </div>
+        </div>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <a href="about-us.html" class="nav-link">ℹ️ About Us</a>
+        <a href="manual.html" class="nav-link">📖 Manual</a>
+      </div>
+</div>
+    <div class="navbar-nav">
+      
+    <div class="noti-container">
+      <button class="noti-btn" onclick="toggleNotiDropdown(event)" aria-label="Notifications">
+        🔔
+        <span class="noti-badge" id="notiBadge"></span>
+      </button>
+      <div class="noti-dropdown" id="notiDropdown">
+        <div class="noti-header">Recent Achievements</div>
+        <div class="noti-list" id="notiList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  
+
+  <div class="app-wrapper">
+    
+
+    <main class="main-content">
+      <div class="flex-between mb-6">
+        <h1 style="margin:0;">My Experiments</h1>
+        <a href="add-experiment.html" class="btn btn-primary">+ Add New</a>
+      </div>
+
+      <div class="card mb-6">
+        <div class="flex-between filters-bar">
+          <input type="text" id="searchInput" class="form-control" placeholder="Search by technology..." style="max-width: 300px;">
+          <select id="statusFilter" class="form-control" style="width: auto;">
+            <option value="">All Statuses</option>
+            <option value="Success">Success</option>
+            <option value="Failed">Failed</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Draft">Draft</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="experiments-grid" id="experimentsGrid">
+        <div class="text-center w-100 py-4"><p class="text-secondary">Loading experiments...</p></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/experiment.js"></script>
+</body>
+</html>

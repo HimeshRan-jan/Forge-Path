@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Forge Path Dashboard — Track your experiments, progress, and research activity.">
+  <title>Dashboard — Forge Path</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="menu-toggle" onclick="toggleTopNav()" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="dashboard.html" class="navbar-brand" style="gap:0.6rem;">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <polygon points="16,3 29,16 16,29 3,16" fill="#0f172a" stroke="#1e3a8a" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="11" r="2" fill="#f97316"/>
+          <path d="M16 23V14M12 18l4-4 4 4" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 0.1rem;"></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
+          <div style="display:flex;align-items:baseline;">
+            <span class="brand-text">ForgePath</span>
+          </div>
+          <span style="font-size:0.4rem;color:var(--text-tertiary);letter-spacing:0.12em;font-weight:600;margin-top:0.15rem;text-transform:uppercase;">Forge Your Career Path</span>
+        </div>
+      </a>
+          <div class="top-nav-links" id="topNavLinks">
+        <a href="dashboard.html" class="nav-link active">📊 Dashboard</a>
+        <a href="roadmap.html" class="nav-link">🗺️ Roadmap</a>
+        <div class="nav-dropdown">
+          <a href="javascript:void(0)" onclick="toggleMyExperiments(event)" class="nav-link">
+            <span>🧪 Experiments</span>
+            <span class="exp-caret" style="font-size:0.8em; transition: transform 0.2s;">▼</span>
+          </a>
+          <div id="exp-submenu" class="nav-dropdown-menu" style="display: none;">
+            <a href="experiments.html" class="nav-link">📋 View List</a>
+            <a href="add-experiment.html" class="nav-link">➕ Add New</a>
+            <a href="compare.html" class="nav-link">⚖️ Compare</a>
+          </div>
+        </div>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <a href="about-us.html" class="nav-link">ℹ️ About Us</a>
+        <a href="manual.html" class="nav-link">📖 Manual</a>
+      </div>
+</div>
+    <div class="navbar-nav">
+      <span id="userGreeting"></span>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  
+
+  <div class="app-wrapper">
+    
+
+    <main class="main-content">
+      <h1 class="mb-6">Dashboard</h1>
+      
+      <!-- Gamification Overview -->
+      <div class="gami-container mb-6">
+        <div class="flex-between">
+          <h3>Level: <span id="userLevel" style="color:var(--primary-color);">Loading...</span></h3>
+          <h3 id="userXp" style="font-family:'JetBrains Mono',monospace;color:var(--primary-color);">0 XP</h3>
+        </div>
+        <div class="xp-bar-container">
+          <div id="xpBar" class="xp-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="card stat-card">
+          <h3 class="stat-value" id="totalExp">0</h3>
+          <p class="stat-label">Total Experiments</p>
+        </div>
+        <div class="card stat-card">
+          <h3 class="stat-value" id="successRate">0%</h3>
+          <p class="stat-label">Success Rate</p>
+        </div>
+        <div class="card stat-card">
+          <h3 class="stat-value" id="recentCount">0</h3>
+          <p class="stat-label">Recent Activity</p>
+        </div>
+      </div>
+
+      <!-- Activity Heatmap -->
+      <div class="card activity-section">
+        <div class="activity-header">
+          <h3>📈 Activity Graph</h3>
+          <div class="streak-stats">
+            <div class="streak-item">
+              <span class="streak-value" id="currentStreak">0</span>
+              <span class="streak-label">Current Streak</span>
+            </div>
+            <div class="streak-item">
+              <span class="streak-value" id="longestStreak">0</span>
+              <span class="streak-label">Longest Streak</span>
+            </div>
+            <div class="streak-item">
+              <span class="streak-value" id="totalContributions">0</span>
+              <span class="streak-label">Total</span>
+            </div>
+          </div>
+        </div>
+        <div class="heatmap-container">
+          <div class="heatmap-wrapper">
+            <div class="heatmap-labels" id="heatmapLabels"></div>
+            <div class="heatmap-grid-wrapper">
+              <div class="heatmap-months" id="heatmapMonths"></div>
+              <div class="heatmap-grid" id="heatmapGrid"></div>
+            </div>
+          </div>
+        </div>
+        <div class="heatmap-legend">
+          <span>Less</span>
+          <div class="legend-cell heatmap-cell level-0"></div>
+          <div class="legend-cell heatmap-cell level-1"></div>
+          <div class="legend-cell heatmap-cell level-2"></div>
+          <div class="legend-cell heatmap-cell level-3"></div>
+          <div class="legend-cell heatmap-cell level-4"></div>
+          <span>More</span>
+        </div>
+      </div>
+
+      <!-- Heatmap Tooltip -->
+      <div class="heatmap-tooltip" id="heatmapTooltip"></div>
+
+      <!-- Recent Experiments -->
+      <div class="card mt-4">
+        <h3>Recent Experiments</h3>
+        <div id="recentExperimentsList" class="recent-list mt-4">
+          <p class="text-secondary">Loading...</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
