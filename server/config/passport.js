@@ -21,10 +21,11 @@ module.exports = function(passport) {
 
   // Google Strategy
   if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
-    passport.use(new GoogleStrategy({
+      passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/api/auth/google/callback"
+        callbackURL: "/api/auth/google/callback",
+        proxy: true
       },
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
@@ -62,7 +63,8 @@ module.exports = function(passport) {
     passport.use(new GitHubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "/api/auth/github/callback"
+        callbackURL: "/api/auth/github/callback",
+        proxy: true
       },
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
