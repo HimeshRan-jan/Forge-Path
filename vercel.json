@@ -1,7 +1,6 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/vercel" },
     { "source": "/login", "destination": "/client/login.html" },
     { "source": "/signup", "destination": "/client/signup.html" },
     { "source": "/dashboard", "destination": "/client/dashboard.html" },
