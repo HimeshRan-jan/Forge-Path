@@ -1,29 +1,19 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "vercel-entry.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "client/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/vercel-entry.js" },
-    { "src": "/login", "dest": "/client/login.html" },
-    { "src": "/signup", "dest": "/client/signup.html" },
-    { "src": "/dashboard", "dest": "/client/dashboard.html" },
-    { "src": "/experiments", "dest": "/client/experiments.html" },
-    { "src": "/add-experiment", "dest": "/client/add-experiment.html" },
-    { "src": "/edit-experiment", "dest": "/client/edit-experiment.html" },
-    { "src": "/experiment-details", "dest": "/client/experiment-details.html" },
-    { "src": "/compare", "dest": "/client/compare.html" },
-    { "src": "/profile", "dest": "/client/profile.html" },
-    { "src": "/about-us", "dest": "/client/about-us.html" },
-    { "src": "/manual", "dest": "/client/manual.html" },
-    { "src": "/", "dest": "/client/index.html" },
-    { "src": "/(.*)", "dest": "/client/$1" }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/vercel-entry.js" },
+    { "source": "/login", "destination": "/client/login.html" },
+    { "source": "/signup", "destination": "/client/signup.html" },
+    { "source": "/dashboard", "destination": "/client/dashboard.html" },
+    { "source": "/experiments", "destination": "/client/experiments.html" },
+    { "source": "/add-experiment", "destination": "/client/add-experiment.html" },
+    { "source": "/edit-experiment", "destination": "/client/edit-experiment.html" },
+    { "source": "/experiment-details", "destination": "/client/experiment-details.html" },
+    { "source": "/compare", "destination": "/client/compare.html" },
+    { "source": "/profile", "destination": "/client/profile.html" },
+    { "source": "/about-us", "destination": "/client/about-us.html" },
+    { "source": "/manual", "destination": "/client/manual.html" },
+    { "source": "/", "destination": "/client/index.html" },
+    { "source": "/(.*)", "destination": "/client/$1" }
   ]
 }
