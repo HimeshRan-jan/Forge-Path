@@ -1,6 +1,7 @@
 {
   "version": 2,
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
     { "source": "/login", "destination": "/client/login.html" },
     { "source": "/signup", "destination": "/client/signup.html" },
     { "source": "/dashboard", "destination": "/client/dashboard.html" },
