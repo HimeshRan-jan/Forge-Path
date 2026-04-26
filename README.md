@@ -243,7 +243,7 @@ OR deploy frontend on Vercel
 
 ## 🌐 Live Demo
 
-👉 https://your-vercel-link.vercel.app
+👉 https://forge-path.vercel.app
 
 ---
 
