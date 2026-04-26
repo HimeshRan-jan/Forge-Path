@@ -6,6 +6,9 @@ const session = require('express-session');
 
 const app = express();
 
+// Trust proxy for platforms like Render/Vercel (needed for accurate IPs and HTTPS redirects)
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
