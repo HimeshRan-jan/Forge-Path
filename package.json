@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Forge Path is a platform where users document experiments while learning technologies and frameworks. Users can record setup details, outcomes, issues, and solutions. They can search experiments, compare them, and track their progress through XP, tiers, and badges.",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
@@ -26,5 +26,13 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HimeshRan-jan/Forge-Path.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HimeshRan-jan/Forge-Path/issues"
+  },
+  "homepage": "https://github.com/HimeshRan-jan/Forge-Path#readme"
 }
