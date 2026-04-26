@@ -247,15 +247,6 @@ OR deploy frontend on Vercel
 
 ---
 
-## 📸 Screenshots
-
-(Add screenshots here)
-
-* Dashboard View
-* Add Experiment Page
-* Profile & Milestones
-
----
 
 ## 🎯 Learning Outcomes
 
